@@ -1,4 +1,5 @@
 import IllustrationDesktop from "@/assets/images/illustration-sign-up-desktop.svg";
+import IllustrationMobile from "@/assets/images/illustration-sign-up-mobile.svg";
 import IconList from "@/assets/images/icon-list.svg";
 import { useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
@@ -25,12 +26,14 @@ export default function Form({
     function submit(input: string) {
         if (emailInput === "") {
             toast("Email field is empty", {
-                style: {background: "#eb6371", color: "white"}
+                style: {background: "#eb6371", color: "white"},
+                position: "top-center"
             })
         }
         if (!isEmailValid(input)) {
             toast("Invalid email format", {
-                style: {background: "#eb6371", color: "white"}
+                style: {background: "#eb6371", color: "white"},
+                position: "top-center"
             })
         }
         if (emailInput === "" || !isEmailValid(input)) return;
@@ -45,11 +48,14 @@ export default function Form({
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9, transition: { type: "just" } }}
-            className="w-full h-full absolute flex items-center justify-center"
+            className="w-full h-full min-h-0 absolute flex md:flex-row flex-col items-center md:justify-center"
         >
-            <div className="bg-white rounded-3xl flex p-5 gap-8">
-                <div className="flex flex-col justify-center px-8 w-[24rem]">
-                    <h2 className="font-roboto text-[3rem] font-bold">
+            <div className="md:hidden block w-full flex-shrink">
+                <img src={IllustrationMobile} alt="illustration for mobile" className="w-full" />
+            </div>
+            <div className="bg-white rounded-3xl flex p-5 gap-8 md:w-fit w-full flex-shrink-0">
+                <div className="flex flex-col justify-center md:px-8 md:w-[24rem] w-full">
+                    <h2 className="font-roboto md:text-[3rem] text-[2.5rem] md:py-0 py-3 font-bold">
                         Stay updated!
                     </h2>
                     <span className="font-roboto text-sm font-medium py-3">
@@ -135,7 +141,7 @@ export default function Form({
                         </button>
                     </div>
                 </div>
-                <div>
+                <div className="md:block hidden">
                     <img
                         src={IllustrationDesktop}
                         alt="sign up illustration"

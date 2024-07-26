@@ -8,7 +8,7 @@ export default function App() {
     const [isComplete, setIsComplete] = useState(false);
     const [emailInput, setEmailInput] = useState("");
     return (
-        <main className="bg-c_background min-h-screen font-roboto flex flex-col justify-center items-center relative overflow-hidden">
+        <main className="md:bg-c_background bg-white min-h-screen font-roboto flex flex-col justify-center items-center relative md:overflow-hidden">
             <Toaster />
             <AnimatePresence>
                 {isComplete ? (
