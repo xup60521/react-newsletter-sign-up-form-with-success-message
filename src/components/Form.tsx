@@ -3,6 +3,7 @@ import IconList from "@/assets/images/icon-list.svg";
 import { useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { motion } from "framer-motion";
+import { toast } from "sonner";
 
 export default function Form({
     setIsComplete,
@@ -22,6 +23,16 @@ export default function Form({
     }
 
     function submit(input: string) {
+        if (emailInput === "") {
+            toast("Email field is empty", {
+                style: {background: "#eb6371", color: "white"}
+            })
+        }
+        if (!isEmailValid(input)) {
+            toast("Invalid email format", {
+                style: {background: "#eb6371", color: "white"}
+            })
+        }
         if (emailInput === "" || !isEmailValid(input)) return;
         setIsSending(true);
         setTimeout(() => {
